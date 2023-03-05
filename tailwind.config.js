@@ -2,7 +2,7 @@ const { fontFamily } = require("tailwindcss/defaultTheme");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ["class", '[data-theme="dark"]'],
+  darkMode: ["class"],
   future: {
     hoverOnlyWhenSupported: true,
   },
@@ -12,6 +12,13 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    container: {
+      center: true,
+      padding: "1.5rem",
+      screens: {
+        "2xl": "1360px",
+      },
+    },
     extend: {
       boxShadow: {
         highlight: "inset 0 0 0 1px rgba(255, 255, 255, 0.05)",

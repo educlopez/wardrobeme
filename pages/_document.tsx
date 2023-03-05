@@ -1,4 +1,4 @@
-import Document, { Head, Html, Main, NextScript } from 'next/document'
+import Document, { Head, Html, Main, NextScript } from "next/document"
 
 class MyDocument extends Document {
   render() {
@@ -23,7 +23,7 @@ class MyDocument extends Document {
             content="See pictures from Next.js Conf and the After Party."
           />
         </Head>
-        <body className="bg-black antialiased">
+        <body className="min-h-screen font-sans antialiased bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-50">
           <Main />
           <NextScript />
         </body>

@@ -5,16 +5,16 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
   XMarkIcon,
-} from "@heroicons/react/24/outline";
-import { AnimatePresence, motion, MotionConfig } from "framer-motion";
-import Image from "next/image";
-import { useState } from "react";
-import { useSwipeable } from "react-swipeable";
-import { variants } from "../utils/animationVariants";
-import downloadPhoto from "../utils/downloadPhoto";
-import { range } from "../utils/range";
-import type { ImageProps, SharedModalProps } from "../utils/types";
-import Twitter from "./Icons/Twitter";
+} from "@heroicons/react/24/outline"
+import { AnimatePresence, motion, MotionConfig } from "framer-motion"
+import Image from "next/image"
+import { useState } from "react"
+import { useSwipeable } from "react-swipeable"
+import { variants } from "@/utils/animationVariants"
+import downloadPhoto from "@/utils/downloadPhoto"
+import { range } from "@/utils/range"
+import type { ImageProps, SharedModalProps } from "@/utils/types"
+import Twitter from "@/components/Icons/Twitter"
 
 export default function SharedModal({
   index,
@@ -25,28 +25,28 @@ export default function SharedModal({
   currentPhoto,
   direction,
 }: SharedModalProps) {
-  const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(false)
 
   let filteredImages = images?.filter((img: ImageProps) =>
     range(index - 15, index + 15).includes(img.id)
-  );
+  )
 
   const handlers = useSwipeable({
     onSwipedLeft: () => {
       if (index < images?.length - 1) {
-        changePhotoId(index + 1);
+        changePhotoId(index + 1)
       }
     },
     onSwipedRight: () => {
       if (index > 0) {
-        changePhotoId(index - 1);
+        changePhotoId(index - 1)
       }
     },
     trackMouse: true,
-  });
+  })
 
-  let currentImage = images ? images[index] : currentPhoto;
-  console.log(currentImage);
+  let currentImage = images ? images[index] : currentPhoto
+  console.log(currentImage)
   return (
     <MotionConfig
       transition={{
@@ -214,5 +214,5 @@ export default function SharedModal({
         </div>
       </div>
     </MotionConfig>
-  );
+  )
 }
