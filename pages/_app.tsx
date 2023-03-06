@@ -1,8 +1,9 @@
 import { Inter as FontSans } from "@next/font/google"
 import { Playfair_Display as FontSerif } from "@next/font/google"
 import { ThemeProvider } from "next-themes"
-import type { AppProps } from "next/app"
 import { SessionProvider } from "next-auth/react"
+import type { AppProps } from "next/app"
+
 import "../styles/index.css"
 
 const fontSans = FontSans({
@@ -15,12 +16,9 @@ const fontSerif = FontSerif({
   variable: "--font-serif",
   display: "swap",
 })
-export default function MyApp({
-  Component,
-  pageProps: { session, ...pageProps },
-}: AppProps) {
+export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <SessionProvider session={session}>
+    <SessionProvider session={pageProps.session}>
       <style jsx global>{`
 				:root {
 					--font-sans: ${fontSans.style.fontFamily};
