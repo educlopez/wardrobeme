@@ -3,7 +3,7 @@ import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { useEffect, useRef } from "react"
+import { useState, useEffect, useRef } from "react"
 import Modal from "@/components/Modal"
 import cloudinary from "@/utils/cloudinary"
 import getBase64ImageUrl from "@/utils/generateBlurPlaceholder"
@@ -11,7 +11,34 @@ import type { ImageProps } from "@/utils/types"
 import { Layout } from "@/components/layout"
 import { useLastViewedPhoto } from "@/utils/useLastViewedPhoto"
 
+import { useSession } from "next-auth/react"
+import AccessDenied from "@/components/access-denied"
+
 const Gallery: NextPage = ({ images }: { images: ImageProps[] }) => {
+  const { data: session } = useSession()
+  const [content, setContent] = useState()
+
+  // Fetch content from protected route
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch("/api/protected")
+      const json = await res.json()
+      if (json.content) {
+        setContent(json.content)
+      }
+    }
+    fetchData()
+  }, [session])
+
+  // If no session exists, display access denied message
+  if (!session) {
+    return (
+      <Layout>
+        <AccessDenied />
+      </Layout>
+    )
+  }
+
   const router = useRouter()
   const { photoId } = router.query
   const [lastViewedPhoto, setLastViewedPhoto] = useLastViewedPhoto()
@@ -25,7 +52,7 @@ const Gallery: NextPage = ({ images }: { images: ImageProps[] }) => {
       setLastViewedPhoto(null)
     }
   }, [photoId, lastViewedPhoto, setLastViewedPhoto])
-
+  console.log(images)
   return (
     <Layout>
       <Head>
@@ -39,7 +66,8 @@ const Gallery: NextPage = ({ images }: { images: ImageProps[] }) => {
           content="https://nextjsconf-pics.vercel.app/og-image.png"
         />
       </Head>
-      <main className="mx-auto max-w-[1960px] p-4">
+      <main className="p-4 mx-auto max-w-7xl">
+        <strong>{content ?? "\u00a0"}</strong>
         {photoId && (
           <Modal
             images={images}
@@ -61,7 +89,7 @@ const Gallery: NextPage = ({ images }: { images: ImageProps[] }) => {
               <Image
                 alt="Next.js Conf photo"
                 className="transition transform rounded-lg brightness-90 will-change-auto group-hover:brightness-110"
-                style={{ transform: "translate3d(0, 0, 0)" }}
+                style={{ transform: "tranzinc3d(0, 0, 0)" }}
                 placeholder="blur"
                 blurDataURL={blurDataUrl}
                 src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_720/${public_id}.${format}`}

@@ -23,7 +23,7 @@ class MyDocument extends Document {
             content="See pictures from Next.js Conf and the After Party."
           />
         </Head>
-        <body className="min-h-screen font-sans antialiased bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-50">
+        <body className="min-h-screen bg-white font-sans text-zinc-900 antialiased dark:bg-zinc-900 dark:text-zinc-50">
           <Main />
           <NextScript />
         </body>

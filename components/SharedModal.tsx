@@ -55,12 +55,12 @@ export default function SharedModal({
       }}
     >
       <div
-        className="relative z-50 flex aspect-[3/2] w-full max-w-7xl items-center wide:h-full xl:taller-than-854:h-auto"
+        className="relative z-50 flex aspect-[2/3] w-full max-w-7xl items-center wide:h-full xl:taller-than-854:h-auto"
         {...handlers}
       >
         {/* Main image */}
         <div className="w-full overflow-hidden">
-          <div className="relative flex aspect-[3/2] items-center justify-center">
+          <div className="relative flex aspect-[2/3] items-center justify-center">
             <AnimatePresence initial={false} custom={direction}>
               <motion.div
                 key={index}
@@ -77,8 +77,8 @@ export default function SharedModal({
                   }/image/upload/c_scale,${navigation ? "w_1280" : "w_1920"}/${
                     currentImage.public_id
                   }.${currentImage.format}`}
-                  width={navigation ? 1280 : 1920}
-                  height={navigation ? 853 : 1280}
+                  width={navigation ? 715 : 1920}
+                  height={navigation ? 1280 : 1280}
                   priority
                   alt="Next.js Conf image"
                   onLoadingComplete={() => setLoaded(true)}
@@ -92,13 +92,13 @@ export default function SharedModal({
         <div className="absolute inset-0 flex items-center justify-center mx-auto max-w-7xl">
           {/* Buttons */}
           {loaded && (
-            <div className="relative aspect-[3/2] max-h-full w-full">
+            <div className="relative aspect-[2/3] max-h-full w-full">
               {navigation && (
                 <>
                   {index > 0 && (
                     <button
                       className="absolute left-3 top-[calc(50%-16px)] rounded-full bg-black/50 p-3 text-white/75 backdrop-blur-lg transition hover:bg-black/75 hover:text-white focus:outline-none"
-                      style={{ transform: "translate3d(0, 0, 0)" }}
+                      style={{ transform: "tranzinc3d(0, 0, 0)" }}
                       onClick={() => changePhotoId(index - 1)}
                     >
                       <ChevronLeftIcon className="w-6 h-6" />
@@ -107,7 +107,7 @@ export default function SharedModal({
                   {index + 1 < images.length && (
                     <button
                       className="absolute right-3 top-[calc(50%-16px)] rounded-full bg-black/50 p-3 text-white/75 backdrop-blur-lg transition hover:bg-black/75 hover:text-white focus:outline-none"
-                      style={{ transform: "translate3d(0, 0, 0)" }}
+                      style={{ transform: "tranzinc3d(0, 0, 0)" }}
                       onClick={() => changePhotoId(index + 1)}
                     >
                       <ChevronRightIcon className="w-6 h-6" />
@@ -169,7 +169,7 @@ export default function SharedModal({
             <div className="fixed inset-x-0 bottom-0 z-40 overflow-hidden bg-gradient-to-b from-black/0 to-black/60">
               <motion.div
                 initial={false}
-                className="mx-auto mt-6 mb-6 flex aspect-[3/2] h-14"
+                className="mx-auto mt-6 mb-6 flex aspect-[2/3] h-14"
               >
                 <AnimatePresence initial={false}>
                   {filteredImages.map(({ public_id, format, id }) => (
