@@ -3,6 +3,7 @@ import { Playfair_Display as FontSerif } from "@next/font/google"
 import { ThemeProvider } from "next-themes"
 import { SessionProvider } from "next-auth/react"
 import type { AppProps } from "next/app"
+import { Analytics } from "@vercel/analytics/react"
 
 import "../styles/index.css"
 
@@ -29,6 +30,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 			}`}</style>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
         <Component {...pageProps} />
+        <Analytics />
       </ThemeProvider>
     </SessionProvider>
   )
