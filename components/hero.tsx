@@ -1,6 +1,6 @@
 import { signIn, useSession } from "next-auth/react"
 import { buttonVariants } from "@/components/ui/button"
-
+import { siteConfig } from "@/config/site"
 import { CldImage } from "next-cloudinary"
 
 export default function Hero() {
@@ -71,24 +71,39 @@ export default function Hero() {
             Start creating virtual wardrobe
           </h1>
           <p className="mt-6 text-lg leading-8 text-zinc-600 dark:text-zinc-300">
-            Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-            lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
-            fugiat aliqua.
+            {siteConfig.description}
           </p>
           <div className="flex items-center mt-10 gap-x-6">
             {!session && (
               <>
-                <p className="mb-6">
-                  Start creating your Digital Wardobe
+                <p className="flex flex-row gap-4 mb-6">
                   <a
                     href="/api/auth/signin"
-                    className=" text-amber-600 hover:text-amber-800"
+                    className={buttonVariants({
+                      size: "sm",
+                      variant: "amber",
+                      className:
+                        "flex flex-row items-center justify-center gap-2 ",
+                    })}
                     onClick={(e) => {
                       e.preventDefault()
                       signIn()
                     }}
                   >
-                    Sign in
+                    Starting sign in
+                  </a>
+                  <a
+                    href={siteConfig.links.github}
+                    className={buttonVariants({
+                      size: "sm",
+                      variant: "outline",
+                      className:
+                        "flex flex-row items-center justify-center gap-2 ",
+                    })}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    Github
                   </a>
                 </p>
               </>

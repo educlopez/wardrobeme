@@ -2,20 +2,23 @@ import { useState } from "react"
 import { CldImage, CldUploadButton } from "next-cloudinary"
 import { buttonVariants } from "@/components/ui/button"
 import Link from "next/link"
+
+interface ImageCloudProps {}
+
 export default function ImageCloud({}: ImageCloudProps) {
-  const [uploadResults, setUploadResults] = useState()
+  const [uploadResults, setUploadResults] = useState<any>()
 
   const uploadResultsTags =
     uploadResults?.info.detection.object_detection.data["cld-fashion"].tags ||
     []
 
-  const objects = []
+  const objects: { category: string; boundingBox: any }[] = []
 
-  const categorySet = new Set()
+  const categorySet = new Set<string>()
 
   Object.keys(uploadResultsTags).forEach((category) => {
     const categoryObjects = uploadResultsTags[category]
-    categoryObjects.forEach((object) => {
+    categoryObjects.forEach((object: any) => {
       const boundingBox = object["bounding-box"]
       if (!categorySet.has(category)) {
         // Si la categoría no está en el conjunto
@@ -27,18 +30,16 @@ export default function ImageCloud({}: ImageCloudProps) {
 
   const colors = uploadResults?.colors
 
-  const colorsArray = colors?.map((color) => ({
+  const colorsArray = colors?.map((color: any) => ({
     hex: color[0],
     percentage: color[1],
   }))
 
-  console.log(colorsArray)
-  function handleOnUpload(result, widget) {
+  function handleOnUpload(result: any, widget: any) {
     setUploadResults(result.info)
     widget.close()
   }
-  console.log(uploadResults)
-
+  console.log(objects)
   return (
     <>
       <div className="px-6 pt-24 sm:pt-32 lg:px-8">
@@ -63,6 +64,7 @@ export default function ImageCloud({}: ImageCloudProps) {
             >
               Upload image
             </CldUploadButton>
+            or
             <Link
               href="/gallery"
               className={buttonVariants({
@@ -70,7 +72,7 @@ export default function ImageCloud({}: ImageCloudProps) {
                 variant: "outline",
               })}
             >
-              or go to gallery
+              Go to gallery
             </Link>
           </div>
         </div>
@@ -80,34 +82,33 @@ export default function ImageCloud({}: ImageCloudProps) {
         <div className="space-y-8 xl:contents xl:space-y-0">
           {uploadResults?.public_id && (
             <>
-              <span className="grid grid-cols-2 gap-4 ">
+              <span className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <figure className="overflow-hidden bg-white shadow-lg rounded-2xl ring-1 ring-zinc-900/5">
                   <CldImage
                     width="1000"
                     height="1000"
                     src={uploadResults.public_id}
                     alt={uploadResults.public_id}
-                    crop="thumb"
+                    crop="crop"
                     gravity="auto"
                     zoom="0.5"
                     className="object-cover w-full h-full"
                   />
                 </figure>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4 ">
                   {objects.map((object) => (
                     <figure
-                      key={`${object.category}-${object.boundingBox.join("-")}`}
+                      key={object.category}
                       className="relative flex flex-col overflow-hidden bg-white shadow-lg grow justify-items-center rounded-2xl ring-1 ring-zinc-900/5"
                     >
                       <CldImage
-                        width="200"
-                        height="200"
+                        width="400"
+                        height="400"
+                        crop="thumb"
+                        zoom="0.9"
+                        gravity={`${object.category}`}
                         src={uploadResults.public_id}
                         alt={uploadResults.public_id}
-                        sizes="(max-width: 480px) 100vw, 50vw"
-                        crop="crop"
-                        gravity={`${object.category}`}
-                        className="object-cover w-full h-full"
                       />
 
                       <figcaption className="absolute bottom-2 left-2">
@@ -122,11 +123,11 @@ export default function ImageCloud({}: ImageCloudProps) {
                 </div>
               </span>
 
-              <div className="grid grid-cols-5 gap-4">
+              <div className="grid h-20 grid-cols-3 gap-5 place-items-stretch md:grid-cols-5">
                 {colorsArray.map((color, index) => (
                   <figure
                     key={index}
-                    className="relative flex flex-col overflow-hidden shadow-lg grow justify-items-center rounded-2xl ring-1 ring-zinc-900/5"
+                    className="relative h-20 overflow-hidden shadow-lg justify-items-center rounded-2xl ring-1 ring-zinc-900/5"
                     style={{ backgroundColor: color.hex }}
                   >
                     <figcaption className="absolute bottom-2 left-2">

@@ -1,5 +1,5 @@
 import Head from "next/head"
-
+import { siteConfig } from "@/config/site"
 import ImageCloud from "@/components/UploadImage"
 import { Layout } from "@/components/layout"
 import { useSession } from "next-auth/react"
@@ -13,7 +13,8 @@ export default function Home() {
   return (
     <Layout>
       <Head>
-        <title>Fashion</title>
+        <title>{siteConfig.name}</title>
+        <meta name="description" content={siteConfig.description} />
       </Head>
       <Hero />
       {!session && <></>}

@@ -28,7 +28,9 @@ export default function LoginBtn() {
               <AvatarImage src={session.user.image} alt={session.user.name} />
               <AvatarFallback>{session.user.name}</AvatarFallback>
             </Avatar>
-            {session.user.name}
+            <span className="text-zinc-900 dark:text-white">
+              {session.user.name}
+            </span>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuLabel>{session.user.email}</DropdownMenuLabel>
