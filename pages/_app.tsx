@@ -1,4 +1,5 @@
 import { Inter as FontSans } from "@next/font/google"
+import { Playfair_Display as FontSerif } from "@next/font/google"
 import { ThemeProvider } from "next-themes"
 import type { AppProps } from "next/app"
 import { SessionProvider } from "next-auth/react"
@@ -7,6 +8,11 @@ import "../styles/index.css"
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
+  display: "swap",
+})
+const fontSerif = FontSerif({
+  subsets: ["latin"],
+  variable: "--font-serif",
   display: "swap",
 })
 export default function MyApp({
@@ -19,6 +25,9 @@ export default function MyApp({
 				:root {
 					--font-sans: ${fontSans.style.fontFamily};
 				}
+        h1, h2, h3, h4, h5, h6 {
+          font-family: ${fontSerif.style.fontFamily};
+        }
 			}`}</style>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
         <Component {...pageProps} />

@@ -52,7 +52,7 @@ const Gallery: NextPage = ({ images }: { images: ImageProps[] }) => {
       setLastViewedPhoto(null)
     }
   }, [photoId, lastViewedPhoto, setLastViewedPhoto])
-  console.log(images)
+
   return (
     <Layout>
       <Head>

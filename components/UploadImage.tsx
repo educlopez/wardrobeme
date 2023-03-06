@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { CldImage, CldUploadButton } from "next-cloudinary"
-
+import { buttonVariants } from "@/components/ui/button"
+import Link from "next/link"
 export default function ImageCloud({}: ImageCloudProps) {
   const [uploadResults, setUploadResults] = useState()
 
@@ -40,15 +41,41 @@ export default function ImageCloud({}: ImageCloudProps) {
 
   return (
     <>
-      <div className="flex justify-center mt-4 gap-x-6">
-        <CldUploadButton
-          uploadPreset="testHackathon"
-          onUpload={handleOnUpload}
-          className="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white rounded-full group bg-zinc-900 hover:bg-zinc-700 hover:text-zinc-100 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900 active:bg-zinc-800 active:text-zinc-300"
-        >
-          Add Clothes to your Wardrobe
-        </CldUploadButton>
+      <div className="px-6 pt-24 sm:pt-32 lg:px-8">
+        <div className="max-w-2xl mx-auto text-center">
+          <p className="text-base font-semibold leading-7 text-amber-600">
+            Upload image to add to your wardrobe
+          </p>
+          <h2 className="mt-2 text-4xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-6xl">
+            Add Tagged Clothes
+          </h2>
+          <p className="mt-6 text-lg leading-8 text-gray-600">
+            Add clothes to your wardrobe and start creating your outfits
+          </p>
+          <div className="flex items-center justify-center mt-6 gap-x-6">
+            <CldUploadButton
+              uploadPreset="testHackathon"
+              onUpload={handleOnUpload}
+              className={buttonVariants({
+                size: "sm",
+                variant: "default",
+              })}
+            >
+              Upload image
+            </CldUploadButton>
+            <Link
+              href="/gallery"
+              className={buttonVariants({
+                size: "sm",
+                variant: "outline",
+              })}
+            >
+              or go to gallery
+            </Link>
+          </div>
+        </div>
       </div>
+
       <div className="grid grid-cols-1 grid-rows-2 gap-8 px-6 mx-auto mt-16 text-sm leading-6 max-w-7xl text-zinc-900 sm:mt-20">
         <div className="space-y-8 xl:contents xl:space-y-0">
           {uploadResults?.public_id && (

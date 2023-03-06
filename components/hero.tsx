@@ -1,6 +1,7 @@
-import { ChevronRightIcon } from "@heroicons/react/20/solid"
-import { signIn, signOut, useSession } from "next-auth/react"
-import ImageCloud from "@/components/UploadImage"
+import { signIn, useSession } from "next-auth/react"
+import { buttonVariants } from "@/components/ui/button"
+
+import { CldImage } from "next-cloudinary"
 
 export default function Hero() {
   const { data: session, status } = useSession()
@@ -66,10 +67,10 @@ export default function Hero() {
       </svg>
       <div className="px-6 pt-10 pb-24 mx-auto max-w-7xl sm:pb-32 lg:flex lg:py-40 lg:px-8">
         <div className="flex-shrink-0 max-w-2xl mx-auto lg:mx-0 lg:max-w-xl lg:pt-8">
-          <h1 className="mt-10 text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-6xl">
+          <h1 className="mt-10 text-4xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-6xl">
             Start creating virtual wardrobe
           </h1>
-          <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-gray-300">
+          <p className="mt-6 text-lg leading-8 text-zinc-600 dark:text-zinc-300">
             Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
             lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
             fugiat aliqua.
@@ -87,15 +88,23 @@ export default function Hero() {
                       signIn()
                     }}
                   >
-                    ☻Sign in
+                    Sign in
                   </a>
                 </p>
               </>
             )}
             {session?.user && (
               <>
-                <a href="/" className=" text-amber-600 hover:text-amber-800">
-                  Start
+                <a
+                  href="/#start"
+                  className={buttonVariants({
+                    size: "sm",
+                    variant: "amber",
+                    className:
+                      "flex flex-row items-center justify-center gap-2 ",
+                  })}
+                >
+                  Start now tagging clothes
                 </a>
               </>
             )}
@@ -103,12 +112,12 @@ export default function Hero() {
         </div>
         <div className="flex max-w-2xl mx-auto mt-16 sm:mt-24 lg:ml-10 lg:mt-0 lg:mr-0 lg:max-w-none lg:flex-none xl:ml-32">
           <div className="flex-none max-w-3xl sm:max-w-5xl lg:max-w-none">
-            <img
-              src="https://tailwindui.com/img/component-images/dark-project-app-screenshot.png"
-              alt="App screenshot"
-              width={2432}
-              height={1442}
-              className="w-[76rem] rounded-md bg-white/5 shadow-2xl ring-1 ring-white/10"
+            <CldImage
+              width={1800}
+              height={715}
+              alt="WardrobeMe"
+              className="w-[46rem] rounded-md bg-white/5 shadow-2xl ring-1 ring-white/10"
+              src="wardrobeme/test_l8k5at"
             />
           </div>
         </div>

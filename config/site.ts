@@ -11,7 +11,7 @@ interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-  name: "Next.js",
+  name: "Wardrobeme",
   description:
     "Beautifully designed components built with Radix UI and Tailwind CSS.",
   mainNav: [

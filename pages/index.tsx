@@ -2,9 +2,8 @@ import Head from "next/head"
 
 import ImageCloud from "@/components/UploadImage"
 import { Layout } from "@/components/layout"
-import { signIn, signOut, useSession } from "next-auth/react"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
+import { useSession } from "next-auth/react"
+
 import Hero from "@/components/hero"
 
 export default function Home() {
@@ -17,7 +16,13 @@ export default function Home() {
         <title>Fashion</title>
       </Head>
       <Hero />
-      <ImageCloud />
+      {!session && <></>}
+      {session?.user && (
+        <>
+          <div id="start"></div>
+          <ImageCloud />
+        </>
+      )}
     </Layout>
   )
 }
