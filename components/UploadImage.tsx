@@ -54,16 +54,19 @@ export default function ImageCloud({}: ImageCloudProps) {
             Add clothes to your wardrobe and start creating your outfits
           </p>
           <div className="flex items-center justify-center mt-6 gap-x-6">
-            <CldUploadButton
-              uploadPreset="testHackathon"
-              onUpload={handleOnUpload}
+            <div
               className={buttonVariants({
                 size: "sm",
                 variant: "default",
               })}
             >
-              Upload image
-            </CldUploadButton>
+              <CldUploadButton
+                uploadPreset="testHackathon"
+                onUpload={handleOnUpload}
+              >
+                Upload image
+              </CldUploadButton>
+            </div>
             or
             <Link
               href="/gallery"
