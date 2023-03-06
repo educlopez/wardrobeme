@@ -43,17 +43,17 @@ export default function ImageCloud({}: ImageCloudProps) {
   return (
     <>
       <div className="px-6 pt-24 sm:pt-32 lg:px-8">
-        <div className="max-w-2xl mx-auto text-center">
+        <div className="mx-auto max-w-2xl text-center">
           <p className="text-base font-semibold leading-7 text-amber-600">
             Upload image to add to your wardrobe
           </p>
           <h2 className="mt-2 text-4xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-6xl">
             Add Tagged Clothes
           </h2>
-          <p className="mt-6 text-lg leading-8 text-gray-600">
+          <p className="mt-6 text-lg leading-8 text-zinc-600 dark:text-zinc-300">
             Add clothes to your wardrobe and start creating your outfits
           </p>
-          <div className="flex items-center justify-center mt-6 gap-x-6">
+          <div className="mt-6 flex items-center justify-center gap-x-6">
             <div
               className={buttonVariants({
                 size: "sm",
@@ -81,12 +81,12 @@ export default function ImageCloud({}: ImageCloudProps) {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 grid-rows-2 gap-8 px-6 mx-auto mt-16 text-sm leading-6 max-w-7xl text-zinc-900 sm:mt-20">
+      <div className="mx-auto mt-16 grid max-w-7xl grid-cols-1 grid-rows-2 gap-8 px-6 text-sm leading-6 text-zinc-900 sm:mt-20">
         <div className="space-y-8 xl:contents xl:space-y-0">
           {uploadResults?.public_id && (
             <>
               <span className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                <figure className="overflow-hidden bg-white shadow-lg rounded-2xl ring-1 ring-zinc-900/5">
+                <figure className="overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-zinc-900/5">
                   <CldImage
                     width="1000"
                     height="1000"
@@ -95,14 +95,14 @@ export default function ImageCloud({}: ImageCloudProps) {
                     crop="crop"
                     gravity="auto"
                     zoom="0.5"
-                    className="object-cover w-full h-full"
+                    className="h-full w-full object-cover"
                   />
                 </figure>
                 <div className="grid grid-cols-2 gap-4 ">
                   {objects.map((object) => (
                     <figure
                       key={object.category}
-                      className="relative flex flex-col overflow-hidden bg-white shadow-lg grow justify-items-center rounded-2xl ring-1 ring-zinc-900/5"
+                      className="relative flex grow flex-col justify-items-center overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-zinc-900/5"
                     >
                       <CldImage
                         width="400"
@@ -116,7 +116,7 @@ export default function ImageCloud({}: ImageCloudProps) {
 
                       <figcaption className="absolute bottom-2 left-2">
                         <div>
-                          <div className="p-2 capitalize transition rounded-md bg-white/40 text-zinc-900 backdrop-blur-sm dark:bg-zinc-900/30 dark:text-white dark:backdrop-blur">
+                          <div className="rounded-md bg-white/40 p-2 capitalize text-zinc-900 backdrop-blur-sm transition dark:bg-zinc-900/30 dark:text-white dark:backdrop-blur">
                             {object.category}
                           </div>
                         </div>
@@ -126,15 +126,15 @@ export default function ImageCloud({}: ImageCloudProps) {
                 </div>
               </span>
 
-              <div className="grid h-20 grid-cols-3 gap-5 place-items-stretch md:grid-cols-5">
+              <div className="grid h-20 grid-cols-3 place-items-stretch gap-5 md:grid-cols-5">
                 {colorsArray.map((color, index) => (
                   <figure
                     key={index}
-                    className="relative h-20 overflow-hidden shadow-lg justify-items-center rounded-2xl ring-1 ring-zinc-900/5"
+                    className="relative h-20 justify-items-center overflow-hidden rounded-2xl shadow-lg ring-1 ring-zinc-900/5"
                     style={{ backgroundColor: color.hex }}
                   >
                     <figcaption className="absolute bottom-2 left-2">
-                      <p className="p-2 capitalize transition rounded-md bg-white/40 text-zinc-900 backdrop-blur-sm dark:bg-zinc-900/30 dark:text-white dark:backdrop-blur">
+                      <p className="rounded-md bg-white/40 p-2 capitalize text-zinc-900 backdrop-blur-sm transition dark:bg-zinc-900/30 dark:text-white dark:backdrop-blur">
                         {color.hex}
                       </p>
                     </figcaption>
