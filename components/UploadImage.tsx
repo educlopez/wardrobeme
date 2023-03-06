@@ -39,7 +39,7 @@ export default function ImageCloud({}: ImageCloudProps) {
     setUploadResults(result.info)
     widget.close()
   }
-  console.log(objects)
+
   return (
     <>
       <div className="px-6 pt-24 sm:pt-32 lg:px-8">
