@@ -1,31 +1,27 @@
-# Next.js & Cloudinary example app
+# Wardrobeme
 
-This example shows how to create an image gallery site using Next.js, [Cloudinary](https://cloudinary.com), and [Tailwind](https://tailwindcss.com).
+Wardrobeme is a web application that helps you organize your wardrobe by uploading an image of your clothes and detecting individual items and colors in the image. It's built using Next.js, TypeScript, and Tailwind CSS, with authentication provided by NextAuth. The project uses components from ui.shadcn.com to create a beautiful and intuitive user interface.
 
-## Deploy your own
+## Usage
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or view the demo [here](https://nextconf-images.vercel.app/)
+---
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-cloudinary&project-name=nextjs-image-gallery&repository-name=with-cloudinary&env=NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,CLOUDINARY_API_KEY,CLOUDINARY_API_SECRET,CLOUDINARY_FOLDER&envDescription=API%20Keys%20from%20Cloudinary%20needed%20to%20run%20this%20application.)
+Visit [wardrobeme.educalvolopez.com](https://wardrobeme.educalvolopez.com/) to try the app. Once you sign up, you can upload images of your clothes and start organizing your wardrobe.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Future Improvements
 
-## How to use
+---
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example::
+Here are some features we plan to add to Wardrobeme in the future:
 
-```bash
- npx create-next-app --example with-cloudinary nextjs-image-gallery
-```
+- Search for tags in the gallery: We want to make it easier for users to find specific items in their wardrobe by allowing them to search for tags associated with each item.
 
-```bash
-yarn create next-app --example with-cloudinary nextjs-image-gallery
-```
+- Fix gallery fetch images: We've noticed that the gallery can sometimes take a long time to load images. We're working on improving the performance of this feature to make the app faster.
 
-```bash
-pnpm create next-app --example with-cloudinary nextjs-image-gallery
-```
+- Add more features: We plan to add more features to Wardrobeme to make it even more useful. Some ideas include outfit suggestions based on the clothes you have, an option to donate clothes you no longer need, and integration with popular shopping apps.
 
-## References
+- Show colors in gallery: We want to add a feature that allows users to see all the items in their wardrobe grouped by color, making it easier to coordinate outfits.
 
-- Cloudinary API: https://cloudinary.com/documentation/transformation_reference
+- More improvements: We're always looking for ways to improve the app and make it more useful for our users. If you have any suggestions or feedback, please let us know!
+
+Thank you for using Wardrobeme!
