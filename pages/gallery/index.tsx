@@ -15,6 +15,19 @@ import { useSession } from "next-auth/react"
 import AccessDenied from "@/components/access-denied"
 
 const Gallery: NextPage = ({ images }: { images: ImageProps[] }) => {
+  const router = useRouter()
+  const { photoId } = router.query
+  const [lastViewedPhoto, setLastViewedPhoto] = useLastViewedPhoto()
+
+  const lastViewedPhotoRef = useRef<HTMLAnchorElement>(null)
+
+  useEffect(() => {
+    // This effect keeps track of the last viewed photo in the modal to keep the index page in sync when the user navigates back
+    if (lastViewedPhoto && !photoId) {
+      lastViewedPhotoRef.current.scrollIntoView({ block: "center" })
+      setLastViewedPhoto(null)
+    }
+  }, [photoId, lastViewedPhoto, setLastViewedPhoto])
   const { data: session } = useSession()
   const [content, setContent] = useState()
 
@@ -38,21 +51,6 @@ const Gallery: NextPage = ({ images }: { images: ImageProps[] }) => {
       </Layout>
     )
   }
-
-  const router = useRouter()
-  const { photoId } = router.query
-  const [lastViewedPhoto, setLastViewedPhoto] = useLastViewedPhoto()
-
-  const lastViewedPhotoRef = useRef<HTMLAnchorElement>(null)
-
-  useEffect(() => {
-    // This effect keeps track of the last viewed photo in the modal to keep the index page in sync when the user navigates back
-    if (lastViewedPhoto && !photoId) {
-      lastViewedPhotoRef.current.scrollIntoView({ block: "center" })
-      setLastViewedPhoto(null)
-    }
-  }, [photoId, lastViewedPhoto, setLastViewedPhoto])
-
   return (
     <Layout>
       <Head>
